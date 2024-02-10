@@ -31,6 +31,14 @@ namespace ConsoleApp15.Entities
 
         public void Withdraw(double amount)
         {
+            if(amount > Balance)
+            {
+                throw new DomainException("Not enough balance");
+            }
+            if(amount > WithdrawnLimit)
+            {
+                throw new DomainException("The amount exceeds withdraw limit");
+            }
             Balance -= amount;
         }
     }
